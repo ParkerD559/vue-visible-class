@@ -1,0 +1,18 @@
+{
+  "name": "vue-visible-class",
+  "version": "1.0.0",
+  "description": "Add a class when an element becomes visible in the viewport.",
+  "main": "index.js",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "keywords": [
+    "vue",
+    "vuejs",
+    "scroll",
+    "class",
+    "animate"
+  ],
+  "author": "David Parker",
+  "license": "MIT"
+}
