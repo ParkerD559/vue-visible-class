@@ -9,13 +9,13 @@ const isInView = el => {
   );
 }
 
-export default (el, classes) => () => {
+export default (el, classes) => {
   const listener = () => {
     if (isInView(el)) {
       classes.forEach(cls => el.classList.add(cls));
       window.removeEventListener('scroll', listener);
     }
   };
+  listener();
   window.addEventListener('scroll', listener);
-  return listener;
 }

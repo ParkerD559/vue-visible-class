@@ -1,5 +1,3 @@
-'use strict';
-
 const isInView = el => {
   const rect = el.getBoundingClientRect();
   const html = document.documentElement;
@@ -11,15 +9,15 @@ const isInView = el => {
   );
 };
 
-var attachListener = (el, classes) => () => {
+var attachListener = (el, classes) => {
   const listener = () => {
     if (isInView(el)) {
       classes.forEach(cls => el.classList.add(cls));
       window.removeEventListener('scroll', listener);
     }
   };
+  listener();
   window.addEventListener('scroll', listener);
-  return listener;
 };
 
 const getClasses = directiveArg => {
@@ -38,13 +36,12 @@ const getClasses = directiveArg => {
 
 var makeDirective = ({ globalClass }) => ({
   inserted: (el, binding) => {
-    const classes = getClasses(binding.value);
+    let classes = getClasses(binding.value);
     if (globalClass) {
-      classes.concat(globalClass);
+      classes = classes.concat(globalClass);
     }
 
-    const listener = attachListener(el, classes);
-    listener();
+    attachListener(el, classes);
   }
 });
 
@@ -59,4 +56,4 @@ var plugin = {
   }
 };
 
-module.exports = plugin;
+export default plugin;

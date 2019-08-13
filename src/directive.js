@@ -16,12 +16,11 @@ const getClasses = directiveArg => {
 
 export default ({ globalClass }) => ({
   inserted: (el, binding) => {
-    const classes = getClasses(binding.value);
+    let classes = getClasses(binding.value);
     if (globalClass) {
-      classes.concat(globalClass);
+      classes = classes.concat(globalClass);
     }
 
-    const listener = attachListener(el, classes);
-    listener();
+    attachListener(el, classes);
   }
 });
